@@ -1,36 +1,28 @@
 # 结婚纪念日网站 · Anniversary Website
 
-A gift site for 张伟 (Wei) & 许荔松 (Lisong). Everything is in Chinese.
+A gift site for 张伟 (Wei) & 许荔松 (Lisong). All in Chinese. 44 photos in five sections:
+一 最初的你们 · 二 我们一家 · 三 你们俩 · 四 一起出发 · 五 我们走过的地方 (interactive map)
 
 ## Files — ALL at the repo ROOT (no subfolders)
 ```
 index.html        <- the website
-.nojekyll         <- lets GitHub Pages serve files as-is
-photo-01.jpg ... photo-20.jpg   <- the 20 photos, next to index.html
+.nojekyll
+photo-01.jpg ... photo-44.jpg
 ```
-`index.html` links to each photo by its plain lowercase name (e.g. `photo-03.jpg`).
-Keep every file together in the same place and the images will load.
+Keep everything together in one folder. The map uses Leaflet + OpenStreetMap/CARTO
+(loaded from a CDN, no API key needed) and works on GitHub Pages out of the box.
 
-## Photo order (which upload became which file)
-photo-01 family Christmas · 02 Mount Rushmore · 03 lake family · 04 Hollywood ·
-05 snowy yard · 06 Universal Studios · 07 state fair · 08 mom on the counter ·
-09 dad cooking · 10 lookout tower · 11 lake family · 12 Christmas (Santa hats) ·
-13 family on couch · 14 ice cream · 15 snowy lake · 16 mountain selfie ·
-17 gondola · 18 misty stairs · 19 the kiss · 20 by the stream
+## Run locally / publish
+- Local:  python3 -m http.server 8000   (open http://localhost:8000)
+- GitHub Pages: upload all files to repo root -> Settings > Pages >
+  Deploy from a branch > main / root. Live at https://<user>.github.io/<repo>/
 
-## See it locally
-Double-click `index.html`, or:
-```bash
-python3 -m http.server 8000   # open http://localhost:8000
-```
-
-## GitHub Pages
-1. Put `index.html`, `.nojekyll`, and all 20 `photo-*.jpg` at the TOP LEVEL of your repo.
-2. Settings -> Pages -> Source: Deploy from a branch -> Branch: main / root -> Save.
-3. Live at: https://<username>.github.io/<repo>/
-4. If images don't show after editing, hard-refresh (Ctrl/Cmd+Shift+R).
+## Map locations (click a pin -> click a photo to enlarge)
+Mount Rushmore SD · Hollywood LA · Universal Studios LA · Rocky Mountains CO ·
+Gatlinburg TN · Great Smoky Mountains (5 photos) · Chicago IL (2) ·
+Jackson Hole WY · Lincoln NE (state capitol selfie)
 
 ## Editing
-- Names: search `修改名字` (张伟 / 许荔松).
-- Sign-off: search `修改落款`.
-- Captions: each photo's `<figcaption>`.
+- Names: search 修改名字 (张伟 / 许荔松); Sign-off: search 修改落款
+- Remove a photo: delete its <figure>...</figure> line (hospital photos = photo-31, photo-32)
+- Map pins/coordinates: edit the PLACES list near the bottom of index.html

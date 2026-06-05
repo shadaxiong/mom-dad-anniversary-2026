@@ -108,6 +108,25 @@
   .lb .x{position:absolute;top:22px;right:30px;color:var(--cream);font-size:2.4rem;cursor:pointer;line-height:1;opacity:.8;transition:.2s;}
   .lb .x:hover{opacity:1;transform:scale(1.1);}
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  #map{height:520px;width:100%;border-radius:6px;border:1px solid rgba(189,147,79,.4);
+    box-shadow:0 12px 30px var(--shadow);overflow:hidden;background:var(--cream-2);}
+  .map-intro{text-align:center;color:var(--ink-soft);font-weight:300;margin:-1rem 0 1.8rem;letter-spacing:.04em;}
+  .pin{background:var(--red);color:#fff;border:2px solid var(--paper);border-radius:50% 50% 50% 0;
+    width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:600;
+    font-size:.85rem;font-family:"Noto Serif SC",serif;box-shadow:0 3px 10px rgba(0,0,0,.35);
+    transform:rotate(-45deg);}
+  .pin span{transform:rotate(45deg);}
+  .leaflet-popup-content-wrapper{background:var(--paper);border:1px solid rgba(189,147,79,.4);
+    border-radius:6px;box-shadow:0 10px 26px var(--shadow);}
+  .leaflet-popup-tip{background:var(--paper);}
+  .pop b{display:block;color:var(--red-deep);font-size:1rem;margin-bottom:.5rem;font-weight:600;}
+  .pop-thumbs{display:flex;flex-wrap:wrap;gap:6px;max-width:230px;}
+  .pop-thumb{width:70px;height:54px;object-fit:cover;border-radius:3px;cursor:pointer;
+    border:1px solid rgba(189,147,79,.5);transition:transform .2s;}
+  .pop-thumb:hover{transform:scale(1.06);}
+</style>
 </head>
 <body>
 <div class="petals" aria-hidden="true"></div>
@@ -142,45 +161,79 @@
     </p>
   </div>
 
-  <!-- ============ 第一辑：我们一家 ============ -->
+  <!-- ============ 相册 ============ -->
   <section class="gallery">
-    <div class="sec-head reveal"><span class="num">一</span><h2>我们一家</h2><span class="line"></span></div>
+    <div class="sec-head reveal"><span class="num">一</span><h2>最初的你们</h2><span class="line"></span></div>
     <div class="grid">
-      <figure class="card" style="--tilt:-1deg"><img src="photo-01.jpg" alt="全家圣诞合影" loading="lazy"><figcaption><b>全家圣诞合影</b> · 还有我们的狗狗</figcaption></figure>
-      <figure class="card" style="--tilt:1.1deg"><img src="photo-12.jpg" alt="圣诞全家福" loading="lazy"><figcaption>圣诞节的全家福</figcaption></figure>
-      <figure class="card" style="--tilt:-.8deg"><img src="photo-03.jpg" alt="湖边全家福" loading="lazy"><figcaption>湖边的全家福</figcaption></figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-36.jpg" alt="婚纱照" loading="lazy"><figcaption><b>婚纱照</b></figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-34.jpg" alt="结婚照" loading="lazy"><figcaption>结婚照</figcaption></figure>
+      <figure class="card" style="--tilt:-.8deg"><img src="photo-40.jpg" alt="婚后的小家" loading="lazy"><figcaption>婚后的小家</figcaption></figure>
+      <figure class="card" style="--tilt:1deg"><img src="photo-35.jpg" alt="一束玫瑰" loading="lazy"><figcaption>一束玫瑰</figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-39.jpg" alt="草莓园里" loading="lazy"><figcaption>草莓园里</figcaption></figure>
+      <figure class="card" style="--tilt:.9deg"><img src="photo-33.jpg" alt="年轻时的你们" loading="lazy"><figcaption><b>年轻时的你们</b></figcaption></figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-37.jpg" alt="毕业那年" loading="lazy"><figcaption>毕业那年</figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-38.jpg" alt="那些年" loading="lazy"><figcaption>那些年</figcaption></figure>
+      <figure class="card" style="--tilt:-.8deg"><img src="photo-41.jpg" alt="青葱岁月" loading="lazy"><figcaption>青葱岁月</figcaption></figure>
+      <figure class="card" style="--tilt:1deg"><img src="photo-42.jpg" alt="大学时光" loading="lazy"><figcaption><b>大学时光</b></figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-43.jpg" alt="校园合影" loading="lazy"><figcaption>校园合影</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="sec-head reveal"><span class="num">二</span><h2>我们一家</h2><span class="line"></span></div>
+    <div class="grid">
+      <figure class="card" style="--tilt:.9deg"><img src="photo-01.jpg" alt="全家圣诞合影 · 还有我们的狗狗" loading="lazy"><figcaption><b>全家圣诞合影</b> · 还有我们的狗狗</figcaption></figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-26.jpg" alt="圣诞节的笑脸" loading="lazy"><figcaption>圣诞节的笑脸</figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-12.jpg" alt="圣诞节的全家福" loading="lazy"><figcaption>圣诞节的全家福</figcaption></figure>
+      <figure class="card" style="--tilt:-.8deg"><img src="photo-03.jpg" alt="湖边的全家福" loading="lazy"><figcaption>湖边的全家福</figcaption></figure>
       <figure class="card" style="--tilt:1deg"><img src="photo-11.jpg" alt="湖边合影" loading="lazy"><figcaption>湖边合影</figcaption></figure>
-      <figure class="card" style="--tilt:-1.1deg"><img src="photo-04.jpg" alt="好莱坞自拍" loading="lazy"><figcaption>好莱坞前的全家自拍</figcaption></figure>
-      <figure class="card" style="--tilt:.9deg"><img src="photo-06.jpg" alt="环球影城" loading="lazy"><figcaption><b>环球影城</b>的欢乐时光</figcaption></figure>
-      <figure class="card" style="--tilt:-1deg"><img src="photo-07.jpg" alt="州集市自拍" loading="lazy"><figcaption>逛集市的欢乐自拍</figcaption></figure>
-      <figure class="card" style="--tilt:1.1deg"><img src="photo-14.jpg" alt="一起吃冰淇淋" loading="lazy"><figcaption>一起吃冰淇淋</figcaption></figure>
-      <figure class="card" style="--tilt:-.9deg"><img src="photo-13.jpg" alt="家人相聚" loading="lazy"><figcaption>围坐一堂，其乐融融</figcaption></figure>
-      <figure class="card" style="--tilt:1deg"><img src="photo-08.jpg" alt="妈妈搞怪" loading="lazy"><figcaption><b>妈妈的搞怪时刻</b></figcaption></figure>
-      <figure class="card" style="--tilt:-1.1deg"><img src="photo-09.jpg" alt="爸爸下厨" loading="lazy"><figcaption>爸爸下厨的快乐</figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-04.jpg" alt="好莱坞前的全家自拍" loading="lazy"><figcaption>好莱坞前的全家自拍</figcaption></figure>
+      <figure class="card" style="--tilt:.9deg"><img src="photo-06.jpg" alt="环球影城的欢乐时光" loading="lazy"><figcaption><b>环球影城</b>的欢乐时光</figcaption></figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-07.jpg" alt="逛集市的欢乐自拍" loading="lazy"><figcaption>逛集市的欢乐自拍</figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-25.jpg" alt="一起看电影" loading="lazy"><figcaption>一起看电影</figcaption></figure>
+      <figure class="card" style="--tilt:-.8deg"><img src="photo-44.jpg" alt="州议会大厦前的合影" loading="lazy"><figcaption><b>州议会大厦</b>前的合影</figcaption></figure>
+      <figure class="card" style="--tilt:1deg"><img src="photo-14.jpg" alt="一起吃冰淇淋" loading="lazy"><figcaption>一起吃冰淇淋</figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-30.jpg" alt="家里的饭桌，还有狗狗" loading="lazy"><figcaption>家里的饭桌，还有狗狗</figcaption></figure>
+      <figure class="card" style="--tilt:.9deg"><img src="photo-13.jpg" alt="围坐一堂，其乐融融" loading="lazy"><figcaption>围坐一堂，其乐融融</figcaption></figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-08.jpg" alt="妈妈的搞怪时刻" loading="lazy"><figcaption><b>妈妈的搞怪时刻</b></figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-09.jpg" alt="爸爸下厨的快乐" loading="lazy"><figcaption>爸爸下厨的快乐</figcaption></figure>
+      <figure class="card" style="--tilt:-.8deg"><img src="photo-29.jpg" alt="妈妈大快朵颐" loading="lazy"><figcaption>妈妈大快朵颐</figcaption></figure>
+      <figure class="card" style="--tilt:1deg"><img src="photo-31.jpg" alt="病榻前的陪伴" loading="lazy"><figcaption>病榻前的陪伴</figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-32.jpg" alt="一起扛过的日子" loading="lazy"><figcaption>一起扛过的日子</figcaption></figure>
     </div>
   </section>
 
-  <!-- ============ 第二辑：你们俩 ============ -->
   <section class="gallery">
-    <div class="sec-head reveal"><span class="num">二</span><h2>你们俩</h2><span class="line"></span></div>
+    <div class="sec-head reveal"><span class="num">三</span><h2>你们俩</h2><span class="line"></span></div>
     <div class="grid">
-      <figure class="card" style="--tilt:1deg"><img src="photo-15.jpg" alt="雪山下的两个人" loading="lazy"><figcaption><b>雪山下</b>，依偎着的两个人</figcaption></figure>
-      <figure class="card" style="--tilt:-1deg"><img src="photo-02.jpg" alt="总统山前" loading="lazy"><figcaption>总统山前</figcaption></figure>
-      <figure class="card" style="--tilt:.9deg"><img src="photo-19.jpg" alt="旅途中的一个吻" loading="lazy"><figcaption><b>旅途中的一个吻</b></figcaption></figure>
-      <figure class="card" style="--tilt:-1.1deg"><img src="photo-05.jpg" alt="雪后院子" loading="lazy"><figcaption>雪后的院子里</figcaption></figure>
-      <figure class="card" style="--tilt:1.1deg"><img src="photo-17.jpg" alt="缆车上的依偎" loading="lazy"><figcaption>缆车上的依偎</figcaption></figure>
-      <figure class="card" style="--tilt:-.9deg"><img src="photo-20.jpg" alt="溪边合影" loading="lazy"><figcaption>溪水潺潺，岁月静好</figcaption></figure>
+      <figure class="card" style="--tilt:.9deg"><img src="photo-15.jpg" alt="雪山下，依偎着的两个人" loading="lazy"><figcaption><b>雪山下</b>，依偎着的两个人</figcaption></figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-21.jpg" alt="山巅合影" loading="lazy"><figcaption>山巅合影</figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-22.jpg" alt="云山之间" loading="lazy"><figcaption>云山之间</figcaption></figure>
+      <figure class="card" style="--tilt:-.8deg"><img src="photo-02.jpg" alt="总统山前" loading="lazy"><figcaption>总统山前</figcaption></figure>
+      <figure class="card" style="--tilt:1deg"><img src="photo-19.jpg" alt="旅途中的一个吻" loading="lazy"><figcaption><b>旅途中的一个吻</b></figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-05.jpg" alt="雪后的院子里" loading="lazy"><figcaption>雪后的院子里</figcaption></figure>
+      <figure class="card" style="--tilt:.9deg"><img src="photo-17.jpg" alt="缆车上的依偎" loading="lazy"><figcaption>缆车上的依偎</figcaption></figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-23.jpg" alt="牛排店的约会" loading="lazy"><figcaption>牛排店的约会</figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-24.jpg" alt="依偎着的你们" loading="lazy"><figcaption>依偎着的你们</figcaption></figure>
+      <figure class="card" style="--tilt:-.8deg"><img src="photo-28.jpg" alt="一起吃寿司" loading="lazy"><figcaption>一起吃寿司</figcaption></figure>
+      <figure class="card" style="--tilt:1deg"><img src="photo-20.jpg" alt="溪水潺潺，岁月静好" loading="lazy"><figcaption>溪水潺潺，岁月静好</figcaption></figure>
     </div>
   </section>
 
-  <!-- ============ 第三辑：一起出发 ============ -->
   <section class="gallery">
-    <div class="sec-head reveal"><span class="num">三</span><h2>一起出发</h2><span class="line"></span></div>
+    <div class="sec-head reveal"><span class="num">四</span><h2>一起出发</h2><span class="line"></span></div>
     <div class="grid">
-      <figure class="card" style="--tilt:-1deg"><img src="photo-16.jpg" alt="山脚下自拍" loading="lazy"><figcaption>山脚下的全家自拍</figcaption></figure>
-      <figure class="card" style="--tilt:1deg"><img src="photo-18.jpg" alt="山路漫漫" loading="lazy"><figcaption>山路漫漫，一步步往上走</figcaption></figure>
-      <figure class="card" style="--tilt:-1.1deg"><img src="photo-10.jpg" alt="瞭望塔全家福" loading="lazy"><figcaption><b>瞭望塔上</b>的全家福</figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-16.jpg" alt="山脚下的全家自拍" loading="lazy"><figcaption>山脚下的全家自拍</figcaption></figure>
+      <figure class="card" style="--tilt:.9deg"><img src="photo-18.jpg" alt="山路漫漫，一步步往上走" loading="lazy"><figcaption>山路漫漫，一步步往上走</figcaption></figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-27.jpg" alt="湖上泛舟" loading="lazy"><figcaption><b>湖上泛舟</b></figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-10.jpg" alt="瞭望塔上的全家福" loading="lazy"><figcaption><b>瞭望塔上</b>的全家福</figcaption></figure>
     </div>
+  </section>
+
+  <section class="gallery">
+    <div class="sec-head reveal"><span class="num">五</span><h2>我们走过的地方</h2><span class="line"></span></div>
+    <p class="map-intro reveal">点击地图上的标记，看看那里的照片。</p>
+    <div id="map" class="reveal"></div>
   </section>
 
   <!-- ============ 结尾 ============ -->
@@ -196,24 +249,45 @@
 
 <div class="lb" id="lb"><span class="x" id="lbx">&times;</span><img id="lbimg" src="" alt=""><p id="lbcap"></p></div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
+  // petals
   (function(){const box=document.querySelector('.petals');for(let i=0;i<14;i++){
     const p=document.createElement('span');p.className='petal';p.style.left=Math.random()*100+'vw';
     const d=7+Math.random()*9;p.style.animationDuration=d+'s';p.style.animationDelay=(-Math.random()*d)+'s';
-    const s=.6+Math.random()*1.1;p.style.transform='scale('+s+')';p.style.opacity=(.3+Math.random()*.4);
+    const sc=.6+Math.random()*1.1;p.style.transform='scale('+sc+')';p.style.opacity=(.3+Math.random()*.4);
     box.appendChild(p);}})();
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll('.card,.reveal').forEach(el=>{el.classList.add('reveal-init');io.observe(el);});
-  const style=document.createElement('style');
-  style.textContent='.reveal:not(.card){opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s;}.reveal.in{opacity:1;transform:none;}';
-  document.head.appendChild(style);
+  const st=document.createElement('style');
+  st.textContent='.reveal:not(.card):not(#map){opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s;}.reveal.in{opacity:1;transform:none;}';
+  document.head.appendChild(st);
+  // lightbox (global)
   const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbcap=document.getElementById('lbcap'),lbx=document.getElementById('lbx');
+  function openLightbox(src,cap){lbimg.src=src;lbcap.textContent=cap||'';lb.classList.add('open');document.body.style.overflow='hidden';}
+  function closeLB(){lb.classList.remove('open');document.body.style.overflow='';}
   document.querySelectorAll('figure.card').forEach(f=>{f.addEventListener('click',()=>{
-    const img=f.querySelector('img');lbimg.src=img.src;lbimg.alt=img.alt;
-    lbcap.textContent=f.querySelector('figcaption').textContent;lb.classList.add('open');document.body.style.overflow='hidden';});});
-  function close(){lb.classList.remove('open');document.body.style.overflow='';}
-  lbx.addEventListener('click',close);lb.addEventListener('click',e=>{if(e.target===lb)close();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+    const img=f.querySelector('img');openLightbox(img.src,f.querySelector('figcaption').textContent);});});
+  lbx.addEventListener('click',closeLB);lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+  // map
+  const PLACES=[{"name": "总统山 · 南达科他", "lat": 43.8791, "lng": -103.4591, "photos": [{"src": "photo-02.jpg", "cap": "总统山前"}]}, {"name": "好莱坞 · 洛杉矶", "lat": 34.1341, "lng": -118.3215, "photos": [{"src": "photo-04.jpg", "cap": "好莱坞前的全家自拍"}]}, {"name": "环球影城 · 好莱坞", "lat": 34.1381, "lng": -118.3534, "photos": [{"src": "photo-06.jpg", "cap": "环球影城"}]}, {"name": "落基山脉 · 科罗拉多", "lat": 40.3428, "lng": -105.6836, "photos": [{"src": "photo-16.jpg", "cap": "山脚下的全家自拍"}]}, {"name": "加特林堡 · 田纳西", "lat": 35.7143, "lng": -83.5102, "photos": [{"src": "photo-17.jpg", "cap": "缆车上的依偎"}]}, {"name": "大烟山国家公园", "lat": 35.6118, "lng": -83.4895, "photos": [{"src": "photo-18.jpg", "cap": "山路漫漫"}, {"src": "photo-19.jpg", "cap": "旅途中的一个吻"}, {"src": "photo-20.jpg", "cap": "溪水潺潺"}, {"src": "photo-21.jpg", "cap": "山巅合影"}, {"src": "photo-22.jpg", "cap": "云山之间"}]}, {"name": "芝加哥 · 伊利诺伊", "lat": 41.8781, "lng": -87.6298, "photos": [{"src": "photo-28.jpg", "cap": "一起吃寿司"}, {"src": "photo-29.jpg", "cap": "妈妈大快朵颐"}]}, {"name": "杰克逊霍尔 · 怀俄明", "lat": 43.4799, "lng": -110.7624, "photos": [{"src": "photo-27.jpg", "cap": "湖上泛舟"}]}, {"name": "林肯 · 内布拉斯加", "lat": 40.8136, "lng": -96.7026, "photos": [{"src": "photo-44.jpg", "cap": "州议会大厦前的合影"}]}];
+  const map=L.map('map',{scrollWheelZoom:false}).setView([41.5,-98],4);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+    subdomains:'abcd',maxZoom:19,
+    attribution:'&copy; OpenStreetMap, &copy; CARTO'}).addTo(map);
+  const bounds=[];
+  PLACES.forEach(p=>{
+    bounds.push([p.lat,p.lng]);
+    const icon=L.divIcon({className:'',html:`<div class="pin"><span>${p.photos.length}</span></div>`,iconSize:[30,30],iconAnchor:[15,30],popupAnchor:[0,-28]});
+    const thumbs=p.photos.map(ph=>`<img src="${ph.src}" data-cap="${ph.cap}" class="pop-thumb" alt="${ph.cap}">`).join('');
+    L.marker([p.lat,p.lng],{icon}).addTo(map)
+      .bindPopup(`<div class="pop"><b>${p.name}</b><div class="pop-thumbs">${thumbs}</div></div>`);
+  });
+  map.fitBounds(bounds,{padding:[40,40]});
+  map.on('popupopen',e=>{e.popup._contentNode.querySelectorAll('.pop-thumb').forEach(img=>{
+    img.addEventListener('click',()=>openLightbox(img.src,img.dataset.cap));});});
 </script>
 </body>
 </html>

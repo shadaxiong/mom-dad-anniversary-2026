@@ -13,171 +13,95 @@
      可以在这里修改名字、献词等内容
      ========================================================= */
   :root{
-    --ink:#2c2017;
-    --ink-soft:#5b4a3c;
-    --cream:#f8f0e2;
-    --cream-2:#f0e4cf;
-    --paper:#fcf6ea;
-    --red:#9c2a25;
-    --red-deep:#7a1c19;
-    --rose:#c0584f;
-    --gold:#bd934f;
-    --gold-light:#d9b878;
-    --shadow:rgba(60,33,20,.18);
-    --maxw:1180px;
+    --ink:#2c2017; --ink-soft:#5b4a3c;
+    --cream:#f8f0e2; --cream-2:#f0e4cf; --paper:#fcf6ea;
+    --red:#9c2a25; --red-deep:#7a1c19; --rose:#c0584f;
+    --gold:#bd934f; --gold-light:#d9b878;
+    --shadow:rgba(60,33,20,.18); --maxw:1180px;
   }
-
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{
-    font-family:"Noto Serif SC",serif;
-    color:var(--ink);
-    background:var(--cream);
-    line-height:1.85;
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  /* paper texture + warm vignette */
-  body::before{
-    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-    background:
-      radial-gradient(120% 80% at 50% -10%, rgba(216,184,120,.18), transparent 60%),
-      radial-gradient(100% 70% at 50% 120%, rgba(156,42,37,.10), transparent 55%);
-  }
-  body::after{
-    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
+  body{font-family:"Noto Serif SC",serif;color:var(--ink);background:var(--cream);
+    line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(120% 80% at 50% -10%, rgba(216,184,120,.18), transparent 60%),
+      radial-gradient(100% 70% at 50% 120%, rgba(156,42,37,.10), transparent 55%);}
+  body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
   .wrap{position:relative;z-index:1;}
 
-  /* drifting petals */
   .petals{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
-  .petal{
-    position:absolute;top:-8vh;width:14px;height:14px;
+  .petal{position:absolute;top:-8vh;width:14px;height:14px;
     background:radial-gradient(circle at 30% 30%, var(--rose), var(--red) 75%);
-    border-radius:80% 0 80% 0;opacity:.55;
-    animation:fall linear infinite;
-  }
-  @keyframes fall{
-    0%{transform:translateY(-10vh) rotate(0deg);opacity:0;}
-    10%{opacity:.6;}
-    100%{transform:translateY(112vh) rotate(420deg);opacity:0;}
-  }
+    border-radius:80% 0 80% 0;opacity:.55;animation:fall linear infinite;}
+  @keyframes fall{0%{transform:translateY(-10vh) rotate(0deg);opacity:0;}10%{opacity:.6;}
+    100%{transform:translateY(112vh) rotate(420deg);opacity:0;}}
 
-  /* ===================== HERO ===================== */
-  header.hero{
-    position:relative;z-index:1;
-    min-height:100svh;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:8vh 24px 10vh;
-  }
-  .xi{
-    font-family:"Ma Shan Zheng",cursive;
-    position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);
-    font-size:min(72vh,52rem);color:var(--red);opacity:.05;z-index:-1;
-    user-select:none;line-height:1;
-  }
-  .eyebrow{
-    font-size:.82rem;letter-spacing:.55em;text-indent:.55em;
-    color:var(--red);font-weight:500;margin-bottom:2.4rem;
-    opacity:0;animation:rise 1s .2s forwards;
-  }
-  .names{
-    display:flex;align-items:center;justify-content:center;gap:clamp(1rem,4vw,3rem);
-    flex-wrap:wrap;
-  }
-  .name{
-    font-family:"Ma Shan Zheng",cursive;
-    font-size:clamp(3.4rem,12vw,8.5rem);
-    color:var(--ink);line-height:1;
-    text-shadow:0 2px 0 rgba(189,147,79,.25);
-    opacity:0;animation:rise 1.1s forwards;
-  }
+  header.hero{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:8vh 24px 10vh;}
+  .xi{font-family:"Ma Shan Zheng",cursive;position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-54%);font-size:min(72vh,52rem);color:var(--red);opacity:.05;
+    z-index:-1;user-select:none;line-height:1;}
+  .eyebrow{font-size:.82rem;letter-spacing:.55em;text-indent:.55em;color:var(--red);
+    font-weight:500;margin-bottom:2.4rem;opacity:0;animation:rise 1s .2s forwards;}
+  .names{display:flex;align-items:center;justify-content:center;gap:clamp(1rem,4vw,3rem);flex-wrap:wrap;}
+  .name{font-family:"Ma Shan Zheng",cursive;font-size:clamp(3.4rem,12vw,8.5rem);color:var(--ink);
+    line-height:1;text-shadow:0 2px 0 rgba(189,147,79,.25);opacity:0;animation:rise 1.1s forwards;}
   .name:first-child{animation-delay:.4s;}
   .name:last-child{animation-delay:.8s;}
-  .amp{
-    font-family:"Noto Serif SC",serif;font-weight:300;
-    font-size:clamp(2rem,6vw,4rem);color:var(--gold);
-    opacity:0;animation:rise 1s .65s forwards;
-  }
+  .amp{font-family:"Noto Serif SC",serif;font-weight:300;font-size:clamp(2rem,6vw,4rem);
+    color:var(--gold);opacity:0;animation:rise 1s .65s forwards;}
   .amp span{display:block;font-size:.42em;letter-spacing:.2em;margin-top:.4em;color:var(--red);}
-  .hero-rule{
-    width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
-    margin:3rem auto 1.6rem;animation:rule 1.4s 1.1s forwards;
-  }
+  .hero-rule{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    margin:3rem auto 1.6rem;animation:rule 1.4s 1.1s forwards;}
   @keyframes rule{to{width:min(420px,70vw);}}
-  .hero-sub{
-    font-size:clamp(1rem,2.4vw,1.3rem);color:var(--ink-soft);font-weight:300;
-    letter-spacing:.12em;opacity:0;animation:rise 1s 1.25s forwards;
-  }
-  .scroll-cue{
-    margin-top:4.5rem;font-size:.78rem;letter-spacing:.4em;color:var(--gold);
-    opacity:0;animation:rise 1s 1.6s forwards;
-  }
+  .hero-sub{font-size:clamp(1rem,2.4vw,1.3rem);color:var(--ink-soft);font-weight:300;
+    letter-spacing:.12em;opacity:0;animation:rise 1s 1.25s forwards;}
+  .scroll-cue{margin-top:4.5rem;font-size:.78rem;letter-spacing:.4em;color:var(--gold);
+    opacity:0;animation:rise 1s 1.6s forwards;}
   .scroll-cue .arr{display:block;font-size:1.1rem;margin-top:.4rem;animation:bob 2s ease-in-out infinite;}
   @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
   @keyframes rise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
 
-  /* ===================== DEDICATION ===================== */
-  .dedication{
-    position:relative;z-index:1;max-width:760px;margin:0 auto;
-    padding:7rem 28px 5rem;text-align:center;
-  }
-  .seal{
-    display:inline-block;font-family:"Ma Shan Zheng",cursive;
-    color:#fff;background:var(--red);width:74px;height:74px;line-height:74px;
-    border-radius:10px;font-size:2.1rem;margin-bottom:2.4rem;
-    box-shadow:0 8px 22px rgba(156,42,37,.35);transform:rotate(-4deg);
-  }
-  .dedication p{
-    font-size:clamp(1.1rem,2.6vw,1.5rem);font-weight:300;color:var(--ink);
-    line-height:2.4;
-  }
-  .dedication .lead{font-size:.8rem;letter-spacing:.5em;text-indent:.5em;color:var(--gold);margin-bottom:1.8rem;font-weight:500;}
+  .dedication{position:relative;z-index:1;max-width:760px;margin:0 auto;
+    padding:7rem 28px 5rem;text-align:center;}
+  .seal{display:inline-block;font-family:"Ma Shan Zheng",cursive;color:#fff;background:var(--red);
+    width:74px;height:74px;line-height:74px;border-radius:10px;font-size:2.1rem;margin-bottom:2.4rem;
+    box-shadow:0 8px 22px rgba(156,42,37,.35);transform:rotate(-4deg);}
+  .dedication p{font-size:clamp(1.1rem,2.6vw,1.5rem);font-weight:300;color:var(--ink);line-height:2.4;}
+  .dedication .lead{font-size:.8rem;letter-spacing:.5em;text-indent:.5em;color:var(--gold);
+    margin-bottom:1.8rem;font-weight:500;}
 
-  /* ===================== SECTIONS ===================== */
   section.gallery{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:3.5rem 24px;}
   .sec-head{display:flex;align-items:center;gap:1.4rem;margin:2.5rem 0 3rem;}
   .sec-head .num{font-family:"Long Cang",cursive;font-size:3.2rem;color:var(--gold-light);line-height:1;}
-  .sec-head h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:600;color:var(--red-deep);letter-spacing:.08em;white-space:nowrap;}
+  .sec-head h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:600;color:var(--red-deep);
+    letter-spacing:.08em;white-space:nowrap;}
   .sec-head .line{flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent);}
 
   .grid{column-count:3;column-gap:22px;}
   @media(max-width:880px){.grid{column-count:2;}}
   @media(max-width:560px){.grid{column-count:1;}}
 
-  figure.card{
-    break-inside:avoid;margin:0 0 22px;background:var(--paper);
-    padding:14px 14px 0;border-radius:4px;
-    box-shadow:0 10px 26px var(--shadow);
-    border:1px solid rgba(189,147,79,.28);
+  figure.card{break-inside:avoid;margin:0 0 22px;background:var(--paper);padding:14px 14px 0;
+    border-radius:4px;box-shadow:0 10px 26px var(--shadow);border:1px solid rgba(189,147,79,.28);
     transform:translateY(40px) rotate(var(--tilt,0deg));opacity:0;cursor:pointer;
-    transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .8s,box-shadow .4s;
-  }
+    transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .8s,box-shadow .4s;}
   figure.card.in{transform:translateY(0) rotate(var(--tilt,0deg));opacity:1;}
   figure.card:hover{transform:translateY(-6px) rotate(0deg) scale(1.015);box-shadow:0 18px 40px rgba(60,33,20,.28);}
   figure.card img{width:100%;display:block;border-radius:2px;}
-  figure.card figcaption{
-    font-size:.96rem;color:var(--ink-soft);font-weight:300;
-    padding:.95rem .3rem 1rem;text-align:center;letter-spacing:.03em;
-  }
+  figure.card figcaption{font-size:.96rem;color:var(--ink-soft);font-weight:300;
+    padding:.95rem .3rem 1rem;text-align:center;letter-spacing:.03em;}
   figure.card figcaption b{color:var(--red);font-weight:500;}
 
-  /* ===================== FOOTER ===================== */
-  footer{
-    position:relative;z-index:1;text-align:center;
-    padding:6rem 24px 7rem;margin-top:3rem;
-  }
+  footer{position:relative;z-index:1;text-align:center;padding:6rem 24px 7rem;margin-top:3rem;}
   .foot-xi{font-family:"Ma Shan Zheng",cursive;font-size:3rem;color:var(--red);opacity:.9;}
   .foot-rule{width:min(340px,70vw);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.8rem auto;}
   footer p{font-size:clamp(1.05rem,2.4vw,1.35rem);font-weight:300;color:var(--ink);}
   footer .sign{font-family:"Long Cang",cursive;font-size:2.1rem;color:var(--red-deep);margin-top:1.4rem;}
 
-  /* ===================== LIGHTBOX ===================== */
-  .lb{position:fixed;inset:0;z-index:50;background:rgba(28,18,12,.92);
-      display:flex;align-items:center;justify-content:center;flex-direction:column;
-      opacity:0;pointer-events:none;transition:opacity .35s;padding:24px;}
+  .lb{position:fixed;inset:0;z-index:50;background:rgba(28,18,12,.92);display:flex;align-items:center;
+    justify-content:center;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .35s;padding:24px;}
   .lb.open{opacity:1;pointer-events:auto;}
   .lb img{max-width:92vw;max-height:80vh;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.6);border:3px solid var(--paper);}
   .lb p{color:var(--cream);margin-top:1.3rem;font-weight:300;letter-spacing:.05em;font-size:1.05rem;}
@@ -187,7 +111,6 @@
 </head>
 <body>
 <div class="petals" aria-hidden="true"></div>
-
 <div class="wrap">
 
   <!-- ============ 开篇 / HERO ============ -->
@@ -221,102 +144,42 @@
 
   <!-- ============ 第一辑：我们一家 ============ -->
   <section class="gallery">
-    <div class="sec-head reveal">
-      <span class="num">一</span>
-      <h2>我们一家</h2>
-      <span class="line"></span>
-    </div>
+    <div class="sec-head reveal"><span class="num">一</span><h2>我们一家</h2><span class="line"></span></div>
     <div class="grid">
-      <figure class="card" style="--tilt:-1deg">
-        <img src="4febe2e6cec413d1880b5d7a2a0c7c0a.jpeg" alt="全家圣诞合影" loading="lazy">
-        <figcaption><b>全家圣诞合影</b> · 还有我们的狗狗</figcaption>
-      </figure>
-      <figure class="card" style="--tilt:1.1deg">
-        <img src="IMG_4840.jpg" alt="全家出游" loading="lazy">
-        <figcaption><b>全家出游</b></figcaption>
-      </figure>
-      <figure class="card" style="--tilt:-.8deg">
-        <img src="IMG_0016_heic.jpg" alt="Crystal 毕业典礼" loading="lazy">
-        <figcaption>Crystal 毕业典礼 · 爸爸的兄弟和弟妹</figcaption>
-      </figure>
-      <figure class="card" style="--tilt:1deg">
-        <img src="IMG_0603.png" alt="妈妈搞怪" loading="lazy">
-        <figcaption><b>妈妈的搞怪时刻</b></figcaption>
-      </figure>
-      <figure class="card" style="--tilt:-1.1deg">
-        <img src="IMG_3295.png" alt="Carly 搞怪" loading="lazy">
-        <figcaption>Carly 的鬼马瞬间</figcaption>
-      </figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-01.jpg" alt="全家圣诞合影" loading="lazy"><figcaption><b>全家圣诞合影</b> · 还有我们的狗狗</figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-12.jpg" alt="圣诞全家福" loading="lazy"><figcaption>圣诞节的全家福</figcaption></figure>
+      <figure class="card" style="--tilt:-.8deg"><img src="photo-03.jpg" alt="湖边全家福" loading="lazy"><figcaption>湖边的全家福</figcaption></figure>
+      <figure class="card" style="--tilt:1deg"><img src="photo-11.jpg" alt="湖边合影" loading="lazy"><figcaption>湖边合影</figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-04.jpg" alt="好莱坞自拍" loading="lazy"><figcaption>好莱坞前的全家自拍</figcaption></figure>
+      <figure class="card" style="--tilt:.9deg"><img src="photo-06.jpg" alt="环球影城" loading="lazy"><figcaption><b>环球影城</b>的欢乐时光</figcaption></figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-07.jpg" alt="州集市自拍" loading="lazy"><figcaption>逛集市的欢乐自拍</figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-14.jpg" alt="一起吃冰淇淋" loading="lazy"><figcaption>一起吃冰淇淋</figcaption></figure>
+      <figure class="card" style="--tilt:-.9deg"><img src="photo-13.jpg" alt="家人相聚" loading="lazy"><figcaption>围坐一堂，其乐融融</figcaption></figure>
+      <figure class="card" style="--tilt:1deg"><img src="photo-08.jpg" alt="妈妈搞怪" loading="lazy"><figcaption><b>妈妈的搞怪时刻</b></figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-09.jpg" alt="爸爸下厨" loading="lazy"><figcaption>爸爸下厨的快乐</figcaption></figure>
     </div>
   </section>
 
   <!-- ============ 第二辑：你们俩 ============ -->
   <section class="gallery">
-    <div class="sec-head reveal">
-      <span class="num">二</span>
-      <h2>你们俩</h2>
-      <span class="line"></span>
-    </div>
+    <div class="sec-head reveal"><span class="num">二</span><h2>你们俩</h2><span class="line"></span></div>
     <div class="grid">
-      <figure class="card" style="--tilt:1deg">
-        <img src="IMG_4750.jpg" alt="雪山下的两个人" loading="lazy">
-        <figcaption><b>雪山下</b>，依偎着的两个人</figcaption>
-      </figure>
-      <figure class="card" style="--tilt:-1deg">
-        <img src="IMG_6193.jpg" alt="溪边合影" loading="lazy">
-        <figcaption>溪水潺潺，岁月静好</figcaption>
-      </figure>
-      <figure class="card" style="--tilt:.9deg">
-        <img src="IMG_6177.jpg" alt="旅途中的一个吻" loading="lazy">
-        <figcaption><b>旅途中的一个吻</b></figcaption>
-      </figure>
-      <figure class="card" style="--tilt:-1.1deg">
-        <img src="IMG_5959.png" alt="缆车上的依偎" loading="lazy">
-        <figcaption>缆车上的依偎</figcaption>
-      </figure>
-      <figure class="card" style="--tilt:1.1deg">
-        <img src="IMG_6244.jpg" alt="山顶合影" loading="lazy">
-        <figcaption>山顶合影</figcaption>
-      </figure>
-      <figure class="card" style="--tilt:-.9deg">
-        <img src="IMG_6274.jpg" alt="又一座山头" loading="lazy">
-        <figcaption>又登上一座山头</figcaption>
-      </figure>
-      <figure class="card" style="--tilt:1deg">
-        <img src="IMG_6983.jpg" alt="一起吃饭" loading="lazy">
-        <figcaption>寻常日子里的一顿饭</figcaption>
-      </figure>
+      <figure class="card" style="--tilt:1deg"><img src="photo-15.jpg" alt="雪山下的两个人" loading="lazy"><figcaption><b>雪山下</b>，依偎着的两个人</figcaption></figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-02.jpg" alt="总统山前" loading="lazy"><figcaption>总统山前</figcaption></figure>
+      <figure class="card" style="--tilt:.9deg"><img src="photo-19.jpg" alt="旅途中的一个吻" loading="lazy"><figcaption><b>旅途中的一个吻</b></figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-05.jpg" alt="雪后院子" loading="lazy"><figcaption>雪后的院子里</figcaption></figure>
+      <figure class="card" style="--tilt:1.1deg"><img src="photo-17.jpg" alt="缆车上的依偎" loading="lazy"><figcaption>缆车上的依偎</figcaption></figure>
+      <figure class="card" style="--tilt:-.9deg"><img src="photo-20.jpg" alt="溪边合影" loading="lazy"><figcaption>溪水潺潺，岁月静好</figcaption></figure>
     </div>
   </section>
 
   <!-- ============ 第三辑：一起出发 ============ -->
   <section class="gallery">
-    <div class="sec-head reveal">
-      <span class="num">三</span>
-      <h2>一起出发</h2>
-      <span class="line"></span>
-    </div>
+    <div class="sec-head reveal"><span class="num">三</span><h2>一起出发</h2><span class="line"></span></div>
     <div class="grid">
-      <figure class="card" style="--tilt:-1deg">
-        <img src="IMG_6089.jpg" alt="山路漫漫" loading="lazy">
-        <figcaption>山路漫漫，一步步往上走</figcaption>
-      </figure>
-      <figure class="card" style="--tilt:1deg">
-        <img src="IMG_6107.jpg" alt="云雾山顶" loading="lazy">
-        <figcaption><b>云雾缭绕</b>的山顶</figcaption>
-      </figure>
-      <figure class="card" style="--tilt:-1.1deg">
-        <img src="IMG_7711.png" alt="湖上泛舟" loading="lazy">
-        <figcaption><b>湖上泛舟</b></figcaption>
-      </figure>
-      <figure class="card" style="--tilt:.9deg">
-        <img src="IMG_6210.jpg" alt="镜头前" loading="lazy">
-        <figcaption>镜头怼到脸上的那一刻</figcaption>
-      </figure>
-      <figure class="card" style="--tilt:-.9deg">
-        <img src="IMG_6212.jpg" alt="笑脸" loading="lazy">
-        <figcaption>笑得最开心的小脸</figcaption>
-      </figure>
+      <figure class="card" style="--tilt:-1deg"><img src="photo-16.jpg" alt="山脚下自拍" loading="lazy"><figcaption>山脚下的全家自拍</figcaption></figure>
+      <figure class="card" style="--tilt:1deg"><img src="photo-18.jpg" alt="山路漫漫" loading="lazy"><figcaption>山路漫漫，一步步往上走</figcaption></figure>
+      <figure class="card" style="--tilt:-1.1deg"><img src="photo-10.jpg" alt="瞭望塔全家福" loading="lazy"><figcaption><b>瞭望塔上</b>的全家福</figcaption></figure>
     </div>
   </section>
 
@@ -331,58 +194,25 @@
 
 </div>
 
-<!-- ============ 灯箱 ============ -->
-<div class="lb" id="lb">
-  <span class="x" id="lbx">&times;</span>
-  <img id="lbimg" src="" alt="">
-  <p id="lbcap"></p>
-</div>
+<div class="lb" id="lb"><span class="x" id="lbx">&times;</span><img id="lbimg" src="" alt=""><p id="lbcap"></p></div>
 
 <script>
-  // drifting petals
-  (function(){
-    const box=document.querySelector('.petals');
-    const N=14;
-    for(let i=0;i<N;i++){
-      const p=document.createElement('span');
-      p.className='petal';
-      p.style.left=Math.random()*100+'vw';
-      const d=7+Math.random()*9;
-      p.style.animationDuration=d+'s';
-      p.style.animationDelay=(-Math.random()*d)+'s';
-      const s=.6+Math.random()*1.1;
-      p.style.transform='scale('+s+')';
-      p.style.opacity=(.3+Math.random()*.4);
-      box.appendChild(p);
-    }
-  })();
-
-  // scroll reveal
-  const io=new IntersectionObserver((es)=>{
-    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-  },{threshold:.14});
-  document.querySelectorAll('.card,.reveal').forEach(el=>{
-    el.classList.add('reveal-init');io.observe(el);
-  });
-  // reveal-init for non-card reveals
+  (function(){const box=document.querySelector('.petals');for(let i=0;i<14;i++){
+    const p=document.createElement('span');p.className='petal';p.style.left=Math.random()*100+'vw';
+    const d=7+Math.random()*9;p.style.animationDuration=d+'s';p.style.animationDelay=(-Math.random()*d)+'s';
+    const s=.6+Math.random()*1.1;p.style.transform='scale('+s+')';p.style.opacity=(.3+Math.random()*.4);
+    box.appendChild(p);}})();
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+  document.querySelectorAll('.card,.reveal').forEach(el=>{el.classList.add('reveal-init');io.observe(el);});
   const style=document.createElement('style');
   style.textContent='.reveal:not(.card){opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s;}.reveal.in{opacity:1;transform:none;}';
   document.head.appendChild(style);
-
-  // lightbox
-  const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),
-        lbcap=document.getElementById('lbcap'),lbx=document.getElementById('lbx');
-  document.querySelectorAll('figure.card').forEach(f=>{
-    f.addEventListener('click',()=>{
-      const img=f.querySelector('img');
-      lbimg.src=img.src;lbimg.alt=img.alt;
-      lbcap.textContent=f.querySelector('figcaption').textContent;
-      lb.classList.add('open');document.body.style.overflow='hidden';
-    });
-  });
+  const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbcap=document.getElementById('lbcap'),lbx=document.getElementById('lbx');
+  document.querySelectorAll('figure.card').forEach(f=>{f.addEventListener('click',()=>{
+    const img=f.querySelector('img');lbimg.src=img.src;lbimg.alt=img.alt;
+    lbcap.textContent=f.querySelector('figcaption').textContent;lb.classList.add('open');document.body.style.overflow='hidden';});});
   function close(){lb.classList.remove('open');document.body.style.overflow='';}
-  lbx.addEventListener('click',close);
-  lb.addEventListener('click',e=>{if(e.target===lb)close();});
+  lbx.addEventListener('click',close);lb.addEventListener('click',e=>{if(e.target===lb)close();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
 </script>
 </body>
